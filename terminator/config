@@ -1,0 +1,53 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+[keybindings]
+  go_up = <Alt>k
+  resize_up = <Primary><Shift>k
+  resize_left = <Primary><Shift>h
+  go_down = <Alt>j
+  go_right = <Alt>l
+  go_left = <Alt>h
+  resize_right = <Primary><Shift>l
+  resize_down = <Primary><Shift>j
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    visible_bell = True
+    icon_bell = False
+    show_titlebar = False
+    copy_on_selection = True
+    scrollback_infinite = True
+
+  [[solarized-dark]]
+    scrollbar_position = hidden
+    visible_bell = True
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    cursor_color = "#eee8d5"
+    foreground_color = "#eee8d5"
+    background_color = "#002b36"
+    icon_bell = False
+    show_titlebar = False
+    copy_on_selection = True
+    scrollback_infinite = True
+
+  [[solarized-light]]
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    visible_bell = True
+    scrollbar_position = hidden
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
+    icon_bell = False
+    show_titlebar = False
+    copy_on_selection = True
+    background_color = "#eee8d5"
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = solarized-dark
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]

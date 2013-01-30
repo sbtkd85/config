@@ -1,0 +1,167 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"   .vimrc file - Place in ~/
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Source vimrc from scrooloose then override settings here
+" https://github.com/akitaonrails/vimfiles.git
+"source ~/.vim/vimrc
+
+" Set encoding to UTF-8
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+   set fileencodings=utf-8,latin1
+endif
+
+"Enable dynamic path (plugins/themes)
+execute pathogen#infect()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   VIM UI settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nomodeline
+"set backup                        " keep a backup(~) file
+set viminfo='20,\"100             " read/write a .viminfo file, don't store more
+                                  " than 100 lines of registers
+set ruler                         " show the cursor position all the time
+set nonumber                      " don't show line numbers
+
+" Setup spacing
+set tabstop=2                     " set number of columns for tabs
+set shiftwidth=4                  " set number of columns to shift (<< or >>)
+set softtabstop=2                 " set number of columns for tab in insert mode
+set smarttab                      " auto tabs
+set expandtab                     " expand tabs to spaces
+set autoindent                    " automatically indent lines
+
+" UI show settings
+syntax on                         " Set syntax highlighting on
+set showmatch                     " show matching brackets
+"set mat=5
+syntax match Tab /\t/             " Match tab character (\t)
+hi Tab guifg=red ctermbg=red
+
+
+" UI color scheme
+set t_Co=16                       " Set terminato to use 16 colors over 256
+set background=dark               " dark background
+let g:solarized_termcolors=16     " use normal solarized colors
+colorscheme solarized             " use solarized theme
+"colorscheme desert256
+call togglebg#map("<F5>")         " Toggle bg between light/dark background
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+"if &t_Co > 2 || has("gui_running")
+"  syntax on
+"  "colorscheme torte
+"  set hlsearch
+"endif
+
+"if &term=="xterm"
+"     set t_Co=8
+"     set t_Sb=[4%dm
+"     set t_Sf=[3%dm
+"endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   Code navigation settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Path to ctags file for taglist
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+"let Tlist_Win_Width = 50
+"map <F4> :TlistToggle<CR><C-W>h
+"map <F5> :!/usr/bin/ctags -R .<CR>
+
+" Path to ctags file
+"set tags+=tags;/home/bakshs/.vim/tags/*.tags
+"set tags+=/home/bakshs/.vim/tags/bmc.tags
+"set tags+=/home/bakshs/.vim/tags/bmc1.tags
+
+" setup syntax highlighting for .yxx files
+"au BufRead,BufNewFile *.yxx set filetype=pccts
+
+" CScope support
+"if has("cscope") && filereadable("/usr/bin/cscope")
+"    set cscopetag       " Use both cscope & ctag for 'ctrl-]', ':ta', and 'vim -t'
+"   set csprg=/usr/bin/cscope
+"   set csto=0
+"   set cst
+"   set nocsverb
+
+    " Add in bmc cscope file
+"    cs add /home/bakshs/.vim/tags/bmc1.tags
+
+   " add any database in current directory
+"   if filereadable("cscope.out")
+"      cs add cscope.out
+   " else add database pointed to by environment
+"   elseif $CSCOPE_DB != ""
+"      cs add $CSCOPE_DB
+"   endif
+
+"   set csverb
+"endif
+" Map Ctrl-\ for cscope
+"nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+" Only do this part when compiled with support for autocommands
+"if has("autocmd")
+  " In text files, always limit the width of text to 78 characters
+"  autocmd BufRead *.txt set tw=78
+  " When editing a file, always jump to the last cursor position
+"  autocmd BufReadPost *
+"  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+"  \   exe \"normal! g'\"" |
+"  \ endif
+"endif
+
+" Add hex mode support to look at binary and hex files
+" ex command for toggling hex mode - define mapping if desired
+command -bar Hexmode call ToggleHex()
+
+" helper function to toggle hex mode
+function ToggleHex()
+     " hex mode should be considered a read-only operation
+     " save values for modified and read-only for restoration later,
+     " and clear the read-only flag for now
+     let l:modified=&mod
+     let l:oldreadonly=&readonly
+     let &readonly=0
+     let l:oldmodifiable=&modifiable
+     let &modifiable=1
+     if !exists("b:editHex") || !b:editHex
+          " save old options
+          let b:oldft=&ft
+          let b:oldbin=&bin
+          " set new options
+          setlocal binary " make sure it overrides any textwidth, etc.
+          let &ft="xxd"
+          " set status
+          let b:editHex=1
+          " switch to hex editor
+          %!xxd
+     else
+          " restore old options
+          let &ft=b:oldft
+          if !b:oldbin
+               setlocal nobinary
+          endif
+          " set status
+          let b:editHex=0
+          " return to normal editing
+          %!xxd -r
+     endif
+     " restore values for modified and read only state
+     let &mod=l:modified
+     let &readonly=l:oldreadonly
+     let &modifiable=l:oldmodifiable
+endfunction

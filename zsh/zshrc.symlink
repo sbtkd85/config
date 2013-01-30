@@ -1,0 +1,30 @@
+# Add shortcut to dotfiles
+export DF=$HOME/.config
+
+# Source *.zsh files
+for config_file ($DF/**/*.zsh) source $config_file
+
+# Source /etc/profile for defaults
+if [[ -e /etc/profile ]]
+then
+  source /etc/profile
+fi
+
+# Source localrc for private stuff
+if [[ -e ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
+# Source dircolors for theme
+if [[ -e ~/.dir_colors ]]
+then
+  eval `dircolors ~/.dir_colors`
+fi
+
+# Init autocomplete
+autoload -U compinit
+compinit
+
+# Fortunes
+fortune

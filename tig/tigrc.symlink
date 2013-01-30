@@ -1,0 +1,7 @@
+# Configuration for tig front-end to git
+
+# Use r for git reset --soft
+bind main r !git reset --soft %(commit)
+
+# Use R for git reset --hard
+bind main R !git reset --hard %(commit)
