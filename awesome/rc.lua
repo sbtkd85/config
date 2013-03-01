@@ -96,11 +96,19 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 filesmenu = {
+   { "Andromeda", "andromeda" },
+   { "Baobab" , "baobab"},
+   { "GParted", "sudo gparted"},
    { "ViFM", terminal .. " -e vifm" }
+}
+internetmenu = {
+   { "Chromium", "chromium" },
+   { "dwb", "dwb" }
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "files", filesmenu },
+                                    { "internet", internetmenu },
                                     { "terminal", terminal }
                                   }
                         })

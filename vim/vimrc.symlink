@@ -34,14 +34,6 @@ set smarttab                      " auto tabs
 set expandtab                     " expand tabs to spaces
 set autoindent                    " automatically indent lines
 
-" UI show settings
-syntax on                         " Set syntax highlighting on
-set showmatch                     " show matching brackets
-"set mat=5
-syntax match Tab /\t/             " Match tab character (\t)
-hi Tab guifg=red ctermbg=red
-
-
 " UI color scheme
 set t_Co=16                       " Set terminato to use 16 colors over 256
 set background=dark               " dark background
@@ -49,6 +41,38 @@ let g:solarized_termcolors=16     " use normal solarized colors
 colorscheme solarized             " use solarized theme
 "colorscheme desert256
 call togglebg#map("<F5>")         " Toggle bg between light/dark background
+
+" UI show settings
+syntax on                         " Set syntax highlighting on
+set showmatch                     " show matching brackets
+set hlsearch                      " Highlight search matches
+
+" Next line is used to highlight what list finds
+hi SpecialKey ctermfg=red guifg=red
+set lcs=tab:\>\<                  " Find tabs and mark with ><
+set list                          " Use list to match lcs
+"set mat=5
+
+"hi ExtraWhitespace ctermbg=Red guibg=Red
+"match ExtraWhitespace /\s\+$/
+"autocmd BufWinEnter * match ExtraWhitespace /\s\s+$/
+"autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+"autocmd BufWinLeave * match call clearmatches()
+
+"autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@<!$/
+"autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
+"hi EOLWS ctermbg=darkgreen guibg=red
+
+"autocmd InsertEnter * set nolist
+"autocmd InsertLeave * set list
+
+" Enable trailing whitespace highlighting
+hi ShowTrailingWhitespace ctermbg=darkgreen guibg=darkgreen
+
+"autocmd colorscheme * hi ShowTrailingWhitespace Error ctermbg=red guibg=red
+"autocmd colorscheme * hi ExtraWhitespace ctermbg=Red guibg=Red
+"autocmd colorscheme * hi Tab guifg=Red ctermbg=Red
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
