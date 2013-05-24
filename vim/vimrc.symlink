@@ -6,7 +6,7 @@
 
 " Source vimrc from scrooloose then override settings here
 " https://github.com/akitaonrails/vimfiles.git
-"source ~/.vim/vimrc
+"source ~/.vim/vimrc - old
 
 " Set encoding to UTF-8
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
@@ -39,7 +39,7 @@ set t_Co=16                       " Set terminato to use 16 colors over 256
 set background=dark               " dark background
 let g:solarized_termcolors=16     " use normal solarized colors
 colorscheme solarized             " use solarized theme
-"colorscheme desert256
+"colorscheme desert256            " backup colors if solarized isn't available
 call togglebg#map("<F5>")         " Toggle bg between light/dark background
 
 " UI show settings
@@ -91,6 +91,13 @@ hi ShowTrailingWhitespace ctermbg=darkgreen guibg=darkgreen
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Code navigation settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Undo settings
+set undodir=~/.vim/undo           " Set undo directory
+set undofile                      " Enable undo files
+
+" Gundo - pretty undo tree
+nnoremap <F3> :GundoToggle<CR>
 
 " Path to ctags file for taglist
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
