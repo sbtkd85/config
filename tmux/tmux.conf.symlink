@@ -1,0 +1,38 @@
+# Unbind defaults
+unbind C-b
+
+# Use screen default
+set -g prefix C-a
+
+# Ctrl+a passthrough (press twice)
+bind C-a send-prefix
+
+# Set 256 colors
+set -g default-terminal "screen-256color"
+
+# Set vim-style keys
+set -g status-keys vi
+setw -g mode-keys vi
+
+# Vim style pane movement
+bind -r h select-pane -L
+bind -r j select-pane -D
+bind -r k select-pane -U
+bind -r l select-pane -R
+
+# Vim style window movement
+bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+
+
+# Shift + Vim style pane resizing
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
+
+# Use Up for Max, Down for Min a pane in a temp window
+unbind Up
+bind Up new-window -d -n tmp \; swap-pane -s tmp.1 \; select-window -t tmp
+
+unbind Down
+bind Down last-window \; swap-pane -s tmp.1 \; kill-window -t tmp
