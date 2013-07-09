@@ -99,6 +99,7 @@ filesmenu = {
    { "Andromeda", "andromeda" },
    { "Baobab" , "baobab"},
    { "GParted", "sudo gparted"},
+   { "PCManFM", "pcmanfm"},
    { "ViFM", terminal .. " -e vifm" }
 }
 internetmenu = {
