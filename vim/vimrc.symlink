@@ -48,8 +48,11 @@ set showmatch                     " show matching brackets
 set hlsearch                      " Highlight search matches
 
 " Next line is used to highlight what list finds
-hi SpecialKey ctermfg=red guifg=red
-set lcs=tab:\>\<                  " Find tabs and mark with ><
+hi SpecialKey ctermfg=202 guifg=#ff5f00
+"hi SpecialKey ctermbg=142 guibg=darkred
+"set listchars=tab:\>\             " Find tabs and mark with '> '
+set listchars=tab:▸\              " Find tabs and mark with '▸ '
+"set listchars=tab:▸\ ,eol:¬
 set list                          " Use list to match lcs
 "set mat=5
 
