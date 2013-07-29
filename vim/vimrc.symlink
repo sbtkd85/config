@@ -19,12 +19,28 @@ execute pathogen#infect()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   VIM UI settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nomodeline
-"set backup                        " keep a backup(~) file
-set viminfo='20,\"100             " read/write a .viminfo file, don't store more
+set nocompatible                  " Don't need to be compatible with vi
+set nomodeline                    " Don't allow modelines (security issues)
+
+set viminfo='20,\"100             " Read/write a .viminfo file, don't store more
                                   " than 100 lines of registers
-set ruler                         " show the cursor position all the time
-set nonumber                      " don't show line numbers
+" UI Navication related
+set backspace=indent,eol,start    " Allow backspacing over autoindent, line breaks, and start of insert
+set laststatus=2                  " Always show status line in last window
+
+set ruler                         " Show the cursor position all the time
+set relativenumber                " Show distance instead of absolute line numbers
+
+set scrolloff=0                   " Don't pad cursur from edge of the screen
+set showcmd                       " Show leader key timeout
+set showmode                      " Show Insert, Replace, Visual mode
+
+set ttyfast                       " Improved redrawing & copy/paste from X
+
+set wildmenu                      " Enable tab completion
+set wildmode=list:longest         " For completion, list all options and match longest
+
+set visualbell                    " Visual bell
 
 " Setup spacing
 set tabstop=2                     " set number of columns for tabs
@@ -46,6 +62,11 @@ call togglebg#map("<F5>")         " Toggle bg between light/dark background
 syntax on                         " Set syntax highlighting on
 set showmatch                     " show matching brackets
 set hlsearch                      " Highlight search matches
+set gdefault                      " Default to replacing all occurances on a line
+
+" Use normal RegExes instead of Vim's
+nnoremap / /\v
+vnoremap / /\v
 
 " Next line is used to highlight what list finds
 hi SpecialKey ctermfg=202 guifg=#ff5f00
@@ -101,6 +122,13 @@ set undofile                      " Enable undo files
 
 " Gundo - pretty undo tree
 nnoremap <F3> :GundoToggle<CR>
+
+" Key mappings
+
+" Leader Key + Space to clear search highlighting
+nnoremap <leader><space> :noh<cr> 
+" Leader + W to strip all trailing whitespace in current file
+"nnoremap <leader>W :%s/\s\+\$//<cr> " :let @/=''<CR> 
 
 " Path to ctags file for taglist
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
