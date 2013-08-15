@@ -40,8 +40,6 @@ set ttyfast                       " Improved redrawing & copy/paste from X
 set wildmenu                      " Enable tab completion
 set wildmode=list:longest         " For completion, list all options and match longest
 
-set visualbell                    " Visual bell
-
 " Setup spacing
 set tabstop=2                     " set number of columns for tabs
 set shiftwidth=4                  " set number of columns to shift (<< or >>)
