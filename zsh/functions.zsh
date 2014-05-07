@@ -1,4 +1,6 @@
 #!/bin/sh
+autoload zmv
+
 function proxy()
 {
     echo -n "username:"
