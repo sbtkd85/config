@@ -38,7 +38,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/bakshs/.config/awesome/themes/awesome-solarized/dark/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "terminator"
