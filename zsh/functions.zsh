@@ -30,3 +30,19 @@ function proxyoff()
     unset rsync_proxy
     echo -e "\nProxy environment variable removed."
 }
+function xvncon()
+{
+    /usr/bin/x11vnc -rfbauth ~/.vnc/passwd -forever -rfbport 5900 &
+}
+function xvncoff()
+{
+    killall x11vnc
+}
+function vncon()
+{
+    /usr/bin/vncserver :1 -geometry 1920x1080
+}
+function vncoff()
+{
+    /usr/bin/vncserver -kill :1
+}
