@@ -16,6 +16,11 @@ endif
 "Enable dynamic path (plugins/themes)
 execute pathogen#infect()
 
+"Enable powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   VIM UI settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -33,7 +38,7 @@ set relativenumber                " Show distance instead of absolute line numbe
 
 set scrolloff=0                   " Don't pad cursur from edge of the screen
 set showcmd                       " Show leader key timeout
-set showmode                      " Show Insert, Replace, Visual mode
+set noshowmode                      " Show Insert, Replace, Visual mode
 
 set ttyfast                       " Improved redrawing & copy/paste from X
 

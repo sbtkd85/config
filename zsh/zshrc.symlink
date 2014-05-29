@@ -11,15 +11,27 @@ then
 fi
 
 # Source localrc for private stuff
-if [[ -e ~/.localrc ]]
+if [[ -e $HOME/.localrc ]]
 then
-  source ~/.localrc
+  source $HOME/.localrc
 fi
 
 # Source dircolors for theme
-if [[ -e ~/.dir_colors ]]
+if [[ -e $HOME/.dir_colors ]]
 then
   eval `dircolors ~/.dir_colors`
+fi
+
+# Source powerline
+if [[ -e $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]
+then
+    source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+fi
+
+# Z - jump around
+if [[ -e $HOME/.config/z/z.sh ]]
+then
+    source $HOME/.config/z/z.sh
 fi
 
 # Init autocomplete
