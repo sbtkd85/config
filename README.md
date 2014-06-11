@@ -7,6 +7,7 @@ Linux .config/ files used on Arch
 
 ### Automatic
 Clone into ~/.config/ and run the install.sh script:
+
     cd ~/.config/
     ./install.sh
 
