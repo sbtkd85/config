@@ -72,11 +72,9 @@ nnoremap / /\v
 vnoremap / /\v
 
 " Next line is used to highlight what list finds
-hi SpecialKey ctermfg=202 guifg=#ff5f00
-"hi SpecialKey ctermbg=142 guibg=darkred
-"set listchars=tab:\>\             " Find tabs and mark with '> '
-set listchars=tab:▸\              " Find tabs and mark with '▸ '
-"set listchars=tab:▸\ ,eol:¬
+"hi SpecialKey ctermfg=136 ctermbg=none guifg=#af8700 guibg=none
+hi SpecialKey ctermfg=166 ctermbg=none guifg=#d75f00 guibg=none
+set listchars=tab:▸\ ,trail:¬     " Find tabs and mark with '▸' and trailing spaces with '¬'
 set list                          " Use list to match lcs
 "set mat=5
 
@@ -95,7 +93,7 @@ set list                          " Use list to match lcs
 "autocmd InsertLeave * set list
 
 " Enable trailing whitespace highlighting
-hi ShowTrailingWhitespace ctermbg=darkgreen guibg=darkgreen
+"hi ShowTrailingWhitespace ctermbg=darkgreen guibg=darkgreen
 
 "autocmd colorscheme * hi ShowTrailingWhitespace Error ctermbg=red guibg=red
 "autocmd colorscheme * hi ExtraWhitespace ctermbg=Red guibg=Red
