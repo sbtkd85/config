@@ -122,7 +122,7 @@ set undodir=~/.vim/undo           " Set undo directory
 set undofile                      " Enable undo files
 
 " Gundo - pretty undo tree
-nnoremap <F3> :GundoToggle<CR>
+"nnoremap <F3> :GundoToggle<CR>
 
 " Key mappings
 
@@ -135,9 +135,10 @@ nnoremap <leader><space> :noh<cr>
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 "let Tlist_Win_Width = 50
 "map <F4> :TlistToggle<CR><C-W>h
-"map <F5> :!/usr/bin/ctags -R .<CR>
+map <F5> :!/usr/bin/ctags -R /home/sachit/ndc/externalsrc/ -f /home/sachit/src/externalsrc.tags<CR>
 
 " Path to ctags file
+set tags+=~/src/externalsrc.tags
 "set tags+=tags;/home/bakshs/.vim/tags/*.tags
 "set tags+=/home/bakshs/.vim/tags/bmc.tags
 "set tags+=/home/bakshs/.vim/tags/bmc1.tags
