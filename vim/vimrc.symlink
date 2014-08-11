@@ -10,16 +10,44 @@
 
 " Set encoding to UTF-8
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-   set fileencodings=utf-8,latin1
+    set fileencodings=utf-8,latin1
+endif
+
+if has ('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 "Enable dynamic path (plugins/themes)
-execute pathogen#infect()
+"execute pathogen#infect()
 
 "Enable powerline
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Enable managed plugins via NeoBundle
+"
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'altercation/vim-colors-solarized'    "Solarized colorscheme
+NeoBundle 'Shougo/neocomplete.vim'              "Autocomplete
+NeoBundle 'Shougo/unite.vim'                    "Does everything?
+
+NeoBundle 'Shougo/vimproc.vim', {
+            \ 'build' : {
+            \ 'unix' : 'make -f make_unix.mak',
+            \ 'windows' : 'tools\\update-dll-mingw',
+            \ },
+            \ }                                 "Allow for background processes
+
+NeoBundle 'mbbill/undotree'                     "Undo tree plugin
+call neobundle#end()
+filetype plugin indent on                       "Required per docs
+NeoBundleCheck                                  "Check for new plugins at boot
+"NeoBundleCheckUpdate                            "Check for updates at boot
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   VIM UI settings
@@ -146,6 +174,53 @@ set tags+=~/src/externalsrc.tags
 " setup syntax highlighting for .yxx files
 "au BufRead,BufNewFile *.yxx set filetype=pccts
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Neocomplete
+"
+" Enable completion
+let g:neocomplete#enable_at_startup = 1
+
+" Enable Omni Completion
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
+
+" <TAB>: completion
+inoremap <expr><TAB> pumvisible()? "\<C-n>" : "\<TAB>"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UndoTree
+"
+let g:undotree_WindowLayout = 4
+let g:undotree_SplitWidth = 40
+let g:undotree_DiffpaneHeight = 15
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Unite
+"
+" Set pt (the_platinum_searcher) or ag (the_silver_searcher) as the default grep utility
+if executable('pt')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nocolor --nogroup --column --ignore ''.m4'' --ignore ''.git'''
+    let g:unite_source_grep_recursive_opt = ''
+elseif executable('ag')
+    let g:unite_source_grep_command = 'pt'
+    let g:unite_source_grep_default_opts = '--nocolor --nogroup --column --ignore ''.m4'' --ignore ''.git'''
+    let g:unite_source_grep_recursive_opt = ''
+endif
+
+" Alow yank/history searching
+let g:unite_source_history_yank_enable = 1
+
+" Some keymappings
+nnoremap [unite] <Nop>
+nmap <space> [unite]
+
+map [unite]g :Unite -no-split grep:/home/sachit/src/ndc/externalsrc/<cr>
+map [unite]y :Unite history/yank<cr>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CScope support
 "if has("cscope") && filereadable("/usr/bin/cscope")
 "    set cscopetag       " Use both cscope & ctag for 'ctrl-]', ':ta', and 'vim -t'
