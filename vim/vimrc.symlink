@@ -202,11 +202,11 @@ let g:undotree_SetFocusWhenToggle = 1
 "
 " Set pt (the_platinum_searcher) or ag (the_silver_searcher) as the default grep utility
 if executable('pt')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nocolor --nogroup --column --ignore ''.m4'' --ignore ''.git'''
+    let g:unite_source_grep_command = 'pt'
+    let g:unite_source_grep_default_opts = '--nocolor --nogroup --ignore ''.m4'' --ignore ''.git'''
     let g:unite_source_grep_recursive_opt = ''
 elseif executable('ag')
-    let g:unite_source_grep_command = 'pt'
+    let g:unite_source_grep_command = 'ag'
     let g:unite_source_grep_default_opts = '--nocolor --nogroup --column --ignore ''.m4'' --ignore ''.git'''
     let g:unite_source_grep_recursive_opt = ''
 endif
