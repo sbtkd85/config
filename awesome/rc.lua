@@ -106,8 +106,13 @@ internetmenu = {
    { "Chromium", "chromium" },
    { "dwb", "dwb" }
 }
+entertainmentmenu = {
+   { "bastet", "bastet" },
+   { "njam", "njam" }
+}
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "entertainment", entertainmentmenu },
                                     { "files", filesmenu },
                                     { "internet", internetmenu },
                                     { "terminal", terminal }
