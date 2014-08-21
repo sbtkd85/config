@@ -5,3 +5,6 @@ bind main r !git reset --soft %(commit)
 
 # Use R for git reset --hard
 bind main R !git reset --hard %(commit)
+
+# Disable vertical splits
+set vertical-split = false
