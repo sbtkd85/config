@@ -213,6 +213,9 @@ elseif executable('ag')
     let g:unite_source_grep_recursive_opt = ''
 endif
 
+" Don't search forever
+let g:unite_source_grep_max_candidates = 350
+
 " Alow yank/history searching
 let g:unite_source_history_yank_enable = 1
 
@@ -221,6 +224,7 @@ nnoremap [unite] <Nop>
 nmap <space> [unite]
 
 map [unite]g :Unite -no-split grep:/home/sachit/src/ndc/externalsrc/<CR>
+map [unite]G :Unite -no-split grep:/home/sachit/src/ndc/externalsrc/::<c-r>=expand("<cword>")<CR><CR>
 map [unite]y :Unite history/yank<CR>
 map [unite]b :Unite buffer<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
