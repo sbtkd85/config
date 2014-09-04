@@ -44,6 +44,8 @@ NeoBundle 'Shougo/vimproc.vim', {
             \ }                                 "Allow for background processes
 
 NeoBundle 'mbbill/undotree'                     "Undo tree plugin
+NeoBundle 'Shougo/unite-outline'                "Outline support (req: ctags)
+
 call neobundle#end()
 filetype plugin indent on                       "Required per docs
 NeoBundleCheck                                  "Check for new plugins at boot
@@ -223,10 +225,12 @@ let g:unite_source_history_yank_enable = 1
 nnoremap [unite] <Nop>
 nmap <space> [unite]
 
-map [unite]g :Unite -no-split grep:/home/sachit/src/ndc/externalsrc/<CR>
-map [unite]G :Unite -no-split grep:/home/sachit/src/ndc/externalsrc/::<c-r>=expand("<cword>")<CR><CR>
+map [unite]b :Unite buffer tab<CR>
+map [unite]f :Unite -no-split -start-insert file_rec/async<CR>
+map [unite]g :Unite -no-split grep:/home/sachit/src/wave2/externalsrc/<CR>
+map [unite]G :Unite -no-split grep:/home/sachit/src/wave2/externalsrc/::<c-r>=expand("<cword>")<CR><CR>
+map [unite]o :Unite -no-split -start-insert -auto-preview outline<CR>
 map [unite]y :Unite history/yank<CR>
-map [unite]b :Unite buffer<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CScope support
 "if has("cscope") && filereadable("/usr/bin/cscope")
