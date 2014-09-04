@@ -152,13 +152,10 @@ set list                          " Use list to match lcs
 set undodir=~/.vim/undo           " Set undo directory
 set undofile                      " Enable undo files
 
-" Gundo - pretty undo tree
-"nnoremap <F3> :GundoToggle<CR>
-
 " Key mappings
 
 " Leader Key + Space to clear search highlighting
-nnoremap <leader><space> :noh<cr> 
+nnoremap <leader><space> :noh<cr>
 " Leader + W to strip all trailing whitespace in current file
 "nnoremap <leader>W :%s/\s\+\$//<cr> " :let @/=''<CR> 
 
@@ -166,7 +163,7 @@ nnoremap <leader><space> :noh<cr>
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 "let Tlist_Win_Width = 50
 "map <F4> :TlistToggle<CR><C-W>h
-map <F3> :!/usr/bin/ctags -R /home/sachit/ndc/externalsrc/ -f /home/sachit/src/externalsrc.tags<CR>
+map <F4> :!/usr/bin/ctags -R /home/sachit/ndc/externalsrc/ -f /home/sachit/src/externalsrc.tags<CR>
 
 " Path to ctags file
 set tags+=~/src/externalsrc.tags
