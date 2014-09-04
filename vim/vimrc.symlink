@@ -166,7 +166,7 @@ nnoremap <leader><space> :noh<cr>
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 "let Tlist_Win_Width = 50
 "map <F4> :TlistToggle<CR><C-W>h
-map <F5> :!/usr/bin/ctags -R /home/sachit/ndc/externalsrc/ -f /home/sachit/src/externalsrc.tags<CR>
+map <F3> :!/usr/bin/ctags -R /home/sachit/ndc/externalsrc/ -f /home/sachit/src/externalsrc.tags<CR>
 
 " Path to ctags file
 set tags+=~/src/externalsrc.tags
@@ -232,6 +232,8 @@ map [unite]G :Unite -no-split grep:/home/sachit/src/wave2/externalsrc/::<c-r>=ex
 map [unite]o :Unite -no-split -start-insert -auto-preview outline<CR>
 map [unite]y :Unite history/yank<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CScope support
 "if has("cscope") && filereadable("/usr/bin/cscope")
 "    set cscopetag       " Use both cscope & ctag for 'ctrl-]', ':ta', and 'vim -t'
@@ -273,7 +275,9 @@ map [unite]y :Unite history/yank<CR>
 "  \   exe \"normal! g'\"" |
 "  \ endif
 "endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Add hex mode support to look at binary and hex files
 " ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
@@ -315,3 +319,4 @@ function ToggleHex()
      let &readonly=l:oldreadonly
      let &modifiable=l:oldmodifiable
 endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
