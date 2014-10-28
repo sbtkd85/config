@@ -46,3 +46,13 @@ function vncoff()
 {
     /usr/bin/vncserver -kill :1
 }
+function py2on()
+{
+    sudo rm /usr/bin/python
+    sudo ln -s /usr/bin/python2 /usr/bin/python
+}
+function py2off()
+{
+    sudo rm /usr/bin/python
+    sudo ln -s /usr/bin/python3 /usr/bin/python
+}
