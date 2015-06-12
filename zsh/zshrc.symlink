@@ -27,6 +27,10 @@ if [[ -e $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerli
 then
     source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
+if [[ -e /usr/share/powerline/zsh/powerline.zsh ]]
+then
+    source /usr/share/powerline/zsh/powerline.zsh
+fi
 
 # Z - jump around
 if [[ -e $HOME/.config/z/z.sh ]]

@@ -224,8 +224,8 @@ nmap <space> [unite]
 
 map [unite]b :Unite buffer tab<CR>
 map [unite]f :Unite -no-split -start-insert file_rec/async<CR>
-map [unite]g :Unite -no-split grep:/home/sachit/src/wave2/externalsrc/<CR>
-map [unite]G :Unite -no-split grep:/home/sachit/src/wave2/externalsrc/::<c-r>=expand("<cword>")<CR><CR>
+map [unite]g :Unite -no-split grep:/home/sachit/src/ndc/externalsrc/<CR>
+map [unite]G :Unite -no-split grep:/home/sachit/src/ndc/externalsrc/::<c-r>=expand("<cword>")<CR><CR>
 map [unite]o :Unite -no-split -start-insert -auto-preview outline<CR>
 map [unite]y :Unite history/yank<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
