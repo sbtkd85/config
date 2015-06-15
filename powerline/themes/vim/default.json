@@ -9,9 +9,6 @@
 		"line_percent": {
 			"args": { "gradient": true },
 			"after": "%"
-		},
-		"line_current_symbol": {
-			"contents": " "
 		}
 	},
 	"segments": {
@@ -22,7 +19,7 @@
 			},
 			{
 				"function": "visual_range",
-				"exclude_modes": ["nc"],
+				"include_modes": ["v", "V", "^V", "s", "S", "^S"],
 				"priority": 10
 			},
 			{
@@ -68,7 +65,7 @@
 				"before": " "
 			},
 			{
-				"include_modes": ["i", "R", "Rv"],
+				"exclude_modes": ["i", "R", "Rv"],
 				"function": "trailing_whitespace",
 				"display": false,
 				"priority": 60
@@ -86,7 +83,7 @@
 			},
 			{
 				"type": "string",
-				"highlight_group": ["background"],
+				"highlight_groups": ["background"],
 				"draw_soft_divider": false,
 				"draw_hard_divider": false,
 				"width": "auto"
@@ -121,8 +118,8 @@
 			},
 			{
 				"type": "string",
-				"function": "line_current_symbol",
-				"highlight_group": ["line_current_symbol", "line_current"]
+				"name": "line_current_symbol",
+				"highlight_groups": ["line_current_symbol", "line_current"]
 			},
 			{
 				"function": "line_current",
