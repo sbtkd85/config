@@ -16,6 +16,11 @@ function proxy()
     export rsync_proxy=$http_proxy
     export RSYNC_PROXY=$http_proxy
     export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+    if [[ -a /usr/bin/apm ]]; then
+        eval apm config set proxy \"$http_proxy\"
+        eval apm config set http-proxy \"$http_proxy\"
+        eval apm config set https-proxy \"$http_proxy\"
+    fi
     echo -e "\nProxy environment variable set."
 }
 function proxyoff()
