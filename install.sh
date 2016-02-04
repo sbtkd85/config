@@ -73,6 +73,12 @@ function update_submodules()
     git submodule update
 }
 
+function install_neobundle()
+{
+    mkdir -p $HOME/.vim/bundle/
+    git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
+}
+
 # Brief: Main function that starts script
 function main()
 {
@@ -86,6 +92,9 @@ function main()
 
     # Then create symlinks
     create_symlinks
+
+    # Install neobundle
+    install_neobundle
 
     # Finally complete additional links/steps
     if [ -L "$HOME/.dir_colors" ]; then
