@@ -1,27 +1,20 @@
 {
 	"common": {
-		"term_truecolor": false,
-		"dividers": {
-			"left": {
-				"hard": " ",
-				"soft": " "
-			},
-			"right": {
-				"hard": " ",
-				"soft": " "
-			}
-		},
-		"spaces": 1
+		"term_truecolor": false
 	},
 	"ext": {
 		"ipython": {
-			"colorscheme": "default",
+			"colorscheme": "solarized",
 			"theme": "in",
 			"local_themes": {
 				"rewrite": "rewrite",
 				"out": "out",
 				"in2": "in2"
 			}
+		},
+		"pdb": {
+			"colorscheme": "solarized",
+			"theme": "default"
 		},
 		"shell": {
 			"colorscheme": "solarized",
@@ -39,6 +32,8 @@
 			"colorscheme": "solarized",
 			"theme": "default",
 			"local_themes": {
+				"__tabline__": "tabline",
+
 				"cmdwin": "cmdwin",
 				"help": "help",
 				"quickfix": "quickfix",
@@ -50,7 +45,7 @@
 			}
 		},
 		"wm": {
-			"colorscheme": "default",
+			"colorscheme": "solarized",
 			"theme": "default"
 		}
 	}

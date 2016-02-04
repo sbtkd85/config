@@ -16,6 +16,10 @@
 						"priority": 5
 					},
 					{
+						"function": "file_directory",
+						"priority": 40
+					},
+					{
 						"function": "file_name",
 						"args": {
 							"display_no_file": true
@@ -45,6 +49,10 @@
 						"priority": 5
 					},
 					{
+						"function": "file_directory",
+						"priority": 40
+					},
+					{
 						"function": "file_name",
 						"args": {
 							"display_no_file": true
@@ -59,7 +67,7 @@
 			},
 			{
 				"type": "string",
-				"highlight_groups": ["background"],
+				"highlight_groups": ["tab:background"],
 				"draw_soft_divider": false,
 				"draw_hard_divider": false,
 				"width": "auto"

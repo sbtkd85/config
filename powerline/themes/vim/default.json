@@ -1,16 +1,4 @@
 {
-	"segment_data": {
-		"branch": {
-			"before": " "
-		},
-		"modified_indicator": {
-			"args": { "text": "+" }
-		},
-		"line_percent": {
-			"args": { "gradient": true },
-			"after": "%"
-		}
-	},
 	"segments": {
 		"left": [
 			{

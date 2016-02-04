@@ -3,31 +3,19 @@
 		"left": [
 			{
 				"function": "powerline.segments.common.net.hostname",
-				"priority": 10,
-				"before": " ",
-				"args": {
-					"only_if_ssh": true,
-					"exclude_domain": true
-				}
+				"priority": 10
 			},
 			{
 				"function": "powerline.segments.common.env.user",
-				"priority": 30,
-				"args": {
-					"hide_user": "user"
-				}
+				"priority": 30
 			},
 			{
 				"function": "powerline.segments.common.env.virtualenv",
-				"priority": 50,
-				"before": "ⓔ  "
+				"priority": 50
 			},
 			{
 				"function": "powerline.segments.shell.cwd",
-				"priority": 10,
-				"args": {
-					"dir_limit_depth": 3
-				}
+				"priority": 10
 			},
 			{
 				"function": "powerline.segments.shell.jobnum",
@@ -41,8 +29,7 @@
 			},
 			{
 				"function": "powerline.segments.common.vcs.branch",
-				"priority": 40,
-				"before": " "
+				"priority": 40
 			}
 		]
 	}
