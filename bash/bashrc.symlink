@@ -1,0 +1,113 @@
+#
+# Bashrc based on my Zshrc
+#
+
+# Source globals first
+if [ -f /etc/bashrc ];
+then
+    source /etc/bashrc
+fi
+
+# Source localrc
+if [ -f $HOME/.localrc ];
+then
+    source $HOME/.localrc
+fi
+
+# Source dircolors for theme
+if [ -e $HOME/.dir_colors ];
+then
+  eval `dircolors ~/.dir_colors`
+fi
+
+# Z - jump around
+if [ -e $HOME/.config/z/z.sh ];
+then
+    source $HOME/.config/z/z.sh
+fi
+
+# aliases for ls
+alias ls="ls --color=auto -F"
+alias l="ls -Alh"
+alias ll="ls -lh"
+alias la="ls -Ah"
+alias ld="ls -lh | grep ^d"
+
+# alias for grep
+alias grepr='grep -r --color=always --exclude=*.o --exclude=*.P --exclude=*.a --exclude=*.swp --exclude=*.tags --exclude=*.*~'
+
+# Function to set prompt
+function set_prompt() {
+  # Setup easy aliases for colors
+  PR_DARK_BLUE="\[$(tput setaf 0)\]"
+  PR_RED="\[$(tput setaf 1)\]"
+  PR_GREEN="\[$(tput setaf 2)\]"
+  PR_YELLOW="\[$(tput setaf 3)\]"
+  PR_BLUE="\[$(tput setaf 4)\]"
+  PR_MEGENTA="\[$(tput setaf 5)\]"
+  PR_CYAN="\[$(tput setaf 6)\]"
+  PR_WHITE="\[$(tput setaf 7)\]"
+  PR_BLACK="\[$(tput setaf 8)\]"
+  PR_NO_COLOR="\[$(tput sgr0)\]"
+
+  # Setup colors based on user
+  if [ $UID -ge 1000 ]; then # Normal users
+    eval PR_OPEN='${PR_BLUE}[${PR_NO_COLOR}'
+    eval PR_CLOSE='${PR_BLUE}]${PR_NO_COLOR}'
+    eval PR_USER_COLOR='${PR_GREEN}'
+  elif [ $UID -eq 0 ]; then # sudo or su
+    eval PR_OPEN='${PR_RED}[${PR_NO_COLOR}'
+    eval PR_CLOSE='${PR_RED}]${PR_NO_COLOR}'
+    eval PR_USER_COLOR='${PR_RED}'
+  fi
+
+  # Set prompt to /first/three/dirs...last/three/dirs
+  PS1="${PR_USER_COLOR}\u${PR_NO_COLOR}@\h${PR_OPEN}\w${PR_CLOSE} "
+}
+
+# Enable or disable VNC server
+function vncon()
+{
+    /usr/bin/vncserver :1 -geometry 1920x1080
+}
+function vncoff()
+{
+    /usr/bin/vncserver -kill :1
+}
+
+function proxy()
+{
+    echo -n "username:"
+    read username
+    echo -n "password:"
+    read -s password
+    export http_proxy="http://$username:$password@proxyserver:port/"
+    export HTTP_PROXY=$http_proxy
+    export https_proxy=$http_proxy
+    export HTTPS_PROXY=$http_proxy
+    export ftp_proxy=$http_proxy
+    export FTP_PROXY=$http_proxy
+    export rsync_proxy=$http_proxy
+    export RSYNC_PROXY=$http_proxy
+    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+    if [ -a /usr/bin/apm ]; then
+        eval apm config set proxy \"$http_proxy\"
+        eval apm config set http-proxy \"$http_proxy\"
+        eval apm config set https-proxy \"$http_proxy\"
+    fi
+    echo -e "\nProxy environment variable set.\n"
+}
+function proxyoff()
+{
+    unset HTTP_PROXY
+    unset http_proxy
+    unset HTTPS_PROXY
+    unset https_proxy
+    unset FTP_PROXY
+    unset ftp_proxy
+    unset RSYNC_PROXY
+    unset rsync_proxy
+    echo -e "\nProxy environment variable removed.\n"
+}
+
+set_prompt
