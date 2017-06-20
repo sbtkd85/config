@@ -21,9 +21,9 @@ endif
 "execute pathogen#infect()
 
 "Enable powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Enable managed plugins via NeoBundle
@@ -104,7 +104,7 @@ vnoremap / /\v
 
 " Next line is used to highlight what list finds
 "hi SpecialKey ctermfg=136 ctermbg=none guifg=#af8700 guibg=none
-hi SpecialKey ctermfg=166 ctermbg=none guifg=#d75f00 guibg=none
+hi SpecialKey ctermfg=166 ctermbg=NONE guifg=#d75f00 guibg=NONE
 set listchars=tab:▸\ ,trail:¬     " Find tabs and mark with '▸' and trailing spaces with '¬'
 set list                          " Use list to match lcs
 "set mat=5
