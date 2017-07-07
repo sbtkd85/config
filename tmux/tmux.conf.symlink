@@ -7,8 +7,9 @@ set -g prefix C-a
 # Ctrl+a passthrough (press twice)
 bind C-a send-prefix
 
-# Set 256 colors
-set -g default-terminal "tmux-256color"
+# Set True Color (24-bit) instead of 256
+#set -g default-terminal "tmux-256color"
+set-option -ga terminal-overrides ",xterm-256color:Tc"
 
 # Set powerline
 if-shell "[[ -e /usr/share/tmux/powerline.conf ]] " \
