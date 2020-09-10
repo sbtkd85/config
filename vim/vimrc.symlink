@@ -4,21 +4,14 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Source vimrc from scrooloose then override settings here
-" https://github.com/akitaonrails/vimfiles.git
-"source ~/.vim/vimrc - old
-
 " Set encoding to UTF-8
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
     set fileencodings=utf-8,latin1
 endif
 
 if has ('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+    set runtimepath+=~/.vim/cache/repos/github.com/Shougo/dein.vim
 endif
-
-"Enable dynamic path (plugins/themes)
-"execute pathogen#infect()
 
 "Enable powerline
 python3 from powerline.vim import setup as powerline_setup
@@ -26,30 +19,45 @@ python3 powerline_setup()
 python3 del powerline_setup
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Enable managed plugins via NeoBundle
+"Enable managed plugins via dein
 "
-call neobundle#begin(expand('~/.vim/bundle/'))
+if dein#load_state('~/.vim/cache')
+    call dein#begin('~/.vim/cache')
+    call dein#add('~/.vim/cache/repos/github.com/Shougo/dein.vim')
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'altercation/vim-colors-solarized'    "Solarized colorscheme
-NeoBundle 'Shougo/neocomplete.vim'              "Autocomplete
-NeoBundle 'Shougo/unite.vim'                    "Does everything?
-NeoBundle 'Shougo/neomru.vim'                   "Most Recently Used filelist for Unite
+    call dein#add('wsdjeg/dein-ui.vim')         "UI for dein updates (run :DeinUpdate to update them)
+    call dein#add('Shougo/deoplete.nvim')       "Completion framework for Vim8/Neovim
+    call dein#add('Shougo/denite.nvim')         "Replacement for unite, flexible panes
+    call dein#add('Shougo/defx.nvim')           "File browsing
+    call dein#add('Shougo/neomru.vim')          "Most Recently Used filelist for denite
+    call dein#add('mbbill/undotree')            "Undo tree for local files
+    call dein#add('altercation/vim-colors-solarized') "Solarized colorscheme
+    call dein#add('pangloss/vim-javascript')    "Javascript syntax highlighting (incl React)
+    call dein#add('Shougo/vimproc.vim', {
+        \ 'build' : {
+        \     'windows' : 'tools\\update-dll-mingw',
+        \     'cygwin' : 'make -f make_cygwin.mak',
+        \     'mac' : 'make',
+        \     'linux' : 'make',
+        \     'unix' : 'gmake',
+        \   },
+        \ } )                                    "Allow for background processes
+    "call dein#add('Shougo/unite-outline')        "Outline support (req: ctags)
 
-NeoBundle 'Shougo/vimproc.vim', {
-            \ 'build' : {
-            \ 'unix' : 'make -f make_unix.mak',
-            \ 'windows' : 'tools\\update-dll-mingw',
-            \ },
-            \ }                                 "Allow for background processes
+    if !has ('nvim')
+        call dein#add('roxma/nvim-yarp')
+        call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
 
-NeoBundle 'mbbill/undotree'                     "Undo tree plugin
-NeoBundle 'Shougo/unite-outline'                "Outline support (req: ctags)
+    call dein#end()                             "Finish dein work
+    call dein#save_state()
+endif
 
-call neobundle#end()
 filetype plugin indent on                       "Required per docs
-NeoBundleCheck                                  "Check for new plugins at boot
-"NeoBundleCheckUpdate                            "Check for updates at boot
+
+if dein#check_install()                         "Check for missing installs
+    call dein#install()                         "And install new/missing plugins
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -60,7 +68,7 @@ set nomodeline                    " Don't allow modelines (security issues)
 
 set viminfo='20,\"100             " Read/write a .viminfo file, don't store more
                                   " than 100 lines of registers
-" UI Navication related
+" UI Navigation related
 set backspace=indent,eol,start    " Allow backspacing over autoindent, line breaks, and start of insert
 set laststatus=2                  " Always show status line in last window
 
@@ -93,7 +101,7 @@ colorscheme solarized             " use solarized theme
 call togglebg#map("<F5>")         " Toggle bg between light/dark background
 
 " UI show settings
-syntax on                         " Set syntax highlighting on
+syntax enable                     " Set syntax highlighting on
 set showmatch                     " show matching brackets
 set hlsearch                      " Highlight search matches
 set gdefault                      " Default to replacing all occurances on a line

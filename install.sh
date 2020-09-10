@@ -73,10 +73,12 @@ function update_submodules()
     git submodule update
 }
 
-function install_neobundle()
+function install_dein()
 {
-    mkdir -p $HOME/.vim/bundle/
-    git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
+    # Create dirs for dein & undo plugins & clone dein initially (dein self-managed by vimrc)
+    mkdir -p $HOME/.vim/undo
+    mkdir -p $HOME/.vim/cache/repos/github.com/Shougo/dein.vim
+    git clone https://github.com/Shougo/dein.vim $HOME/.vim/cache/repos/github.com/Shougo/dein.vim
 }
 
 # Brief: Main function that starts script
@@ -93,8 +95,8 @@ function main()
     # Then create symlinks
     create_symlinks
 
-    # Install neobundle
-    install_neobundle
+    # Install dein
+    install_dein
 
     # Finally complete additional links/steps
     if [ -L "$HOME/.dir_colors" ]; then
