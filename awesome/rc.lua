@@ -103,7 +103,7 @@ filesmenu = {
    { "ViFM", terminal .. " -e vifm" }
 }
 internetmenu = {
-   { "Chromium", "chromium" },
+   { "Chromium", "chromium-browser" },
    { "dwb", "dwb" }
 }
 entertainmentmenu = {
